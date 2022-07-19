@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Custom 404{% endblock %}
+{% block content %}
+  <div class="col-md-8 offset-md-2">
+    <div class="text-center">
+      <h1 class="display-1 fw-bold">404</h1>
+        <p class="fs-3"> <span class="text-danger">Opps!</span> Страница не найдена.</p>
+        <p class="lead">
+          Страницы с адресом <b>{{ path }}</b> не существует
+        </p>
+        <a href="{% url 'posts:index' %}" class="btn btn-primary">Вернуться на главную</a>
+        <p>
+          <h1> ¯\_(ツ)_/¯ </h1>
+        </p>
+    </div>
+</div>
+{% endblock %} 

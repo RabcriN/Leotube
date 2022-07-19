@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Об авторе проекта{% endblock %}
+{% block content %}
+<div class="container py-5">
+  {% load static %}
+  <style>
+    .fig {text-align: center}
+  </style>
+  <h1>Hello, dear friend!</h1>
+  <p>
+    <p class="fig">
+      Тут я размещу информацию о себе, используя свои умения верстать.
+      Картинки, блоки, элементы бустрап. 
+      А может быть даже напишу несколько абзацев текста. 
+    </p>  
+  <i class="fig">Но это не точно...</i>
+  <p class="fig"><img src="{% static 'img/photo.png' %}" alt="Фото автора"></p>
+</div>
+{% endblock %} 

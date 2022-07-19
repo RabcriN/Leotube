@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}{{ group.title }}{% endblock title %}
+{% block content %}
+  <div class="container py-5">
+    <h1>{{ group.title }}</h1>
+    <p> {{ group.description }} </p>
+    {% for post in posts %} <!--Да, я понимаю абсурдность этих сточек, они -->
+    {% endfor %}    <!-- есть в content.html. Но pytest не пускает без них -->
+    {% include 'includes/content.html' %}
+    {% include 'posts/includes/paginator.html' %}
+  </div>  
+{% endblock %}

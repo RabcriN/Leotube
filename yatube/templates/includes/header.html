@@ -1,0 +1,89 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}"> 
+<header>
+  <nav class="navbar navbar-light" style="background-color: lightskyblue">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'posts:index' %}">
+        <img src={% static 'img/logo.png' %} width="30" height="30" 
+        class="d-inline-block align-top" alt="">
+        <span style="color:purple"><b>LEO</b></span>-tube</a>
+      </a>
+      <ul class="nav nav-pills">
+      {% with request.resolver_match.view_name as v_n %}  
+      <li class="nav-item">              
+        <a class="nav-link 
+          {% if v_n  == 'about:author' %}
+            active
+          {% endif %}"
+          href="{% url 'about:author' %}">
+          Об авторе
+        </a>
+      </li>
+      <li class="nav-item">              
+        <a class="nav-link 
+          {% if v_n  == 'about:tech' %}
+            active
+          {% endif %}"
+          href="{% url 'about:tech' %}">
+          Технологии
+        </a>
+      </li>
+      {% if user.is_authenticated %}
+        <li class="nav-item">              
+          <a class="nav-link 
+            {% if v_n  == 'posts:post_create' %}
+                active
+            {% endif %}"
+            href="{% url 'posts:post_create' %}">
+            Новая запись
+          </a>
+        </li>
+        <li class="nav-item">              
+          <a class="nav-link 
+            {% if v_n  == 'users:password_change_form' %}
+              active
+            {% endif %}"
+            href="{% url 'users:password_change_form' %}">
+            Изменить пароль
+          </a>
+        </li>
+        <li class="nav-item">              
+          <a class="nav-link 
+            {% if v_n  == 'users:logout' %}
+              active
+            {% endif %}"
+            href="{% url 'users:logout' %}">
+            Выйти
+          </a>
+        </li>
+        <li>
+          <a button type="button" class="btn btn-primary btn-md" 
+            href= "{% url 'posts:profile' user.username %}">
+            Вы вошли как: {{ user.username }}</button>
+          </a>          
+        </li>
+      {% else %}
+      <li class="nav-item">              
+        <a class="nav-link 
+          {% if v_n  == 'users:login' %}
+            active
+          {% endif %}"
+          href="{% url 'users:login' %}">
+          Войти
+        </a>
+      </li>
+      <li class="nav-item">              
+        <a class="nav-link 
+          {% if v_n  == 'users:signup' %}
+            active
+          {% endif %}"
+          href="{% url 'users:signup' %}">
+          Регистрация
+        </a>
+      </li>
+      {% endif %}
+      {% endwith %} 
+      </ul>
+    </div>
+  </nav>      
+</header>

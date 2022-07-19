@@ -1,0 +1,8 @@
+{% extends 'base.html' %}  
+{% block content %}
+  <div class="container py-5">     
+    <h1> Количество человек, на которых Вы подписаны: {{ authors.count }}</h1>
+    {% include 'includes/show_all_group_posts.html' %}
+    {% include 'posts/includes/paginator.html' %}
+  </div>
+{% endblock %}
