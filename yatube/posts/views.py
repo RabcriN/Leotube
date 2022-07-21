@@ -42,9 +42,10 @@ def profile(request, username):
     author = get_object_or_404(User, username=username)
     post_list = author.posts.all()
     following = False
-    if request.user.is_authenticated:
-        if (Follow.objects.filter(user=request.user, author=author).exists()):
-            following = True
+    if request.user.is_authenticated and (
+        Follow.objects.filter(user=request.user, author=author).exists()
+    ):
+        following = True
     page_obj = get_paginator(request, post_list)
     context = {
         'author': author,

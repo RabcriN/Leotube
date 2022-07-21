@@ -80,19 +80,14 @@ class PostPagesTests(TestCase):
             page_object.author.username,
             page_object.image,
         ]
-        if post_data != context_data:
-            return False
-        return True
+        return self.assertSequenceEqual(post_data, context_data)
 
     def test_index_show_correct_context(self):
         """Шаблон index сформирован с правильным контекстом + паджинатор
         на 10 постов"""
         response = self.authorized_client.get(reverse('posts:index'))
         first_object = response.context['page_obj'][0]
-        self.assertTrue(
-            self.check_context(first_object),
-            'Словари контекста не совпадают'
-        )
+        self.check_context(first_object)
         self.assertEqual(len(response.context['page_obj']), 10)
 
     def test_group_list_show_correct_context(self):
@@ -102,10 +97,7 @@ class PostPagesTests(TestCase):
             reverse('posts:group_list', kwargs={'slug': 'test_slug'}))
         )
         first_object = response.context['page_obj'][0]
-        self.assertTrue(
-            self.check_context(first_object),
-            'Словари контекста не совпадают'
-        )
+        self.check_context(first_object)
         self.assertEqual(len(response.context['page_obj']), 10)
 
     def test_profile_show_correct_context(self):
@@ -115,10 +107,7 @@ class PostPagesTests(TestCase):
             reverse('posts:profile', kwargs={'username': 'Author'}))
         )
         first_object = response.context['page_obj'][0]
-        self.assertTrue(
-            self.check_context(first_object),
-            'Словари контекста не совпадают'
-        )
+        self.check_context(first_object)
         self.assertEqual(len(response.context['page_obj']), 10)
 
     def test_post_detail_show_correct_context(self):
@@ -130,10 +119,7 @@ class PostPagesTests(TestCase):
             ))
         )
         page_object = response.context['post']
-        self.assertTrue(
-            self.check_context(page_object),
-            'Словари контекста не совпадают'
-        )
+        self.check_context(page_object)
 
     def test_post_create_show_correct_context(self):
         """Шаблон post_create сформирован с правильным контекстом."""
