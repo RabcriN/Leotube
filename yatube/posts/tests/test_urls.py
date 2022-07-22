@@ -30,18 +30,17 @@ class PostURLTests(TestCase):
             '/create/': 'posts/post_create.html',
             '/follow/': 'posts/follow.html',
         }
-        cls.reduction = '/auth/login/?next='
         cls.login_required_url_names = {
-            '/follow/': f'{cls.reduction}/follow/',
+            '/follow/': '/follow/',
             f'/profile/{cls.user.username}/follow/':
-            f'{cls.reduction}/profile/{cls.user.username}/follow/',
+            f'/profile/{cls.user.username}/follow/',
             f'/profile/{cls.user.username}/unfollow/':
-            f'{cls.reduction}/profile/{cls.user.username}/unfollow/',
+            f'/profile/{cls.user.username}/unfollow/',
             f'/posts/{cls.post.id}/comment/':
-            f'{cls.reduction}/posts/{cls.post.id}/comment/',
+            f'/posts/{cls.post.id}/comment/',
             f'/posts/{cls.post.id}/edit/':
-            f'{cls.reduction}/posts/{cls.post.id}/edit/',
-            '/create/': f'{cls.reduction}/create/',
+            f'/posts/{cls.post.id}/edit/',
+            '/create/': '/create/',
         }
 
     def setUp(self):
@@ -109,7 +108,7 @@ class PostURLTests(TestCase):
         """Проверка редиректов для неавторизированного пользователя"""
         for url, redirect in self.login_required_url_names.items():
             response = self.guest_client.get(url, follow=True)
-            self.assertRedirects(response, redirect)
+            self.assertRedirects(response, f'/auth/login/?next={redirect}')
 
     def test_302_for_some_urls(self):
         """302 для подписки, отписки и комментария авторизированного юзера"""
