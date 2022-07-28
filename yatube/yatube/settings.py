@@ -26,6 +26,8 @@ SECRET_KEY = 'cpxk(ai5x$jqml!!aax9f)0!u8m+h&$d!l8&vd88u-fw+d2r-f'
 DEBUG = True
 
 ALLOWED_HOSTS = [
+    'www.RabcriN.pythonanywhere.com',
+    'RabcriN.pythonanywhere.com',
     'localhost',
     '127.0.0.1',
     '[::1]',
@@ -47,6 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'sorl.thumbnail',
+    'debug_toolbar',
 ]
 
 MIDDLEWARE = [
@@ -57,6 +60,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+]
+
+INTERNAL_IPS = [
+    '127.0.0.1',
 ]
 
 ROOT_URLCONF = 'yatube.urls'
