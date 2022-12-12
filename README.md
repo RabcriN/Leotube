@@ -14,11 +14,11 @@
 Клонировать репозиторий и перейти в него в командной строке:
 
 ```
-git clone https://github.com/RabcriN/hw05_final.git
+git clone git@github.com:RabcriN/Leotube.git
 ```
 
 ```
-cd hw05_final
+cd Leotube
 ```
 
 Cоздать и активировать виртуальное окружение:
